@@ -81,22 +81,25 @@
 
         <main>
 
-            <ul>
-                <?php
-
-                for ( $i = 0; $i < count($hotels); $i++ ) {
-
-                    echo $hotels[$i];
-                    echo $hotels[$i]['name'];
-                    echo $hotels[$i]['description'];
-                    echo $hotels[$i]['parking'];
-                    echo $hotels[$i]['vote'];
-                    echo $hotels[$i][ 'distance_to_center'];
-
-                };
-
-                ?>
-            </ul>
+            <h1>Elenco Hotel</h1>
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrizione</th>
+                    <th>Parcheggio</th>
+                    <th>Voto</th>
+                    <th>Distanza dal centro</th>
+                </tr>
+                <?php foreach ($hotels as $hotel): ?>
+                    <tr>
+                        <td><?php echo $hotel['name']; ?></td>
+                        <td><?php echo $hotel['description']; ?></td>
+                        <td><?php echo $hotel['parking'] ? 'Sì' : 'No'; ?></td>
+                        <td><?php echo $hotel['vote']; ?></td>
+                        <td><?php echo $hotel['distance_to_center']; ?> km</td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
 
         </main>
 
