@@ -79,24 +79,24 @@
 
     <body>
 
-        <main>
+        <main class="col-8 m-auto p-4">
 
             <h1>Elenco Hotel</h1>
-            <table>
+            <table class="table">
                 <tr>
-                    <th>Nome</th>
-                    <th>Descrizione</th>
-                    <th>Parcheggio</th>
-                    <th>Voto</th>
-                    <th>Distanza dal centro</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">Parcheggio</th>
+                    <th scope="col">Voto</th>
+                    <th scope="col">Distanza dal centro</th>
                 </tr>
                 <?php foreach ($hotels as $hotel): ?>
                     <tr>
-                        <td><?php echo $hotel['name']; ?></td>
-                        <td><?php echo $hotel['description']; ?></td>
-                        <td><?php echo $hotel['parking'] ? 'Sì' : 'No'; ?></td>
-                        <td><?php echo $hotel['vote']; ?></td>
-                        <td><?php echo $hotel['distance_to_center']; ?> km</td>
+                        <td scope="row"><?php echo $hotel['name']; ?></td>
+                        <td scope="row"><?php echo $hotel['description']; ?></td>
+                        <td scope="row"><?php echo $hotel['parking'] ? 'Sì' : 'No'; ?></td>
+                        <td scope="row"><?php echo $hotel['vote']; ?></td>
+                        <td scope="row"><?php echo $hotel['distance_to_center']; ?> km</td>
                     </tr>
                 <?php endforeach; ?>
             </table>
