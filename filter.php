@@ -40,13 +40,33 @@
 
     ];
 
+    // Filtra gli hotel in base alle selezioni del form
+    $ratingFilter = $_GET['rating'] ?? null;
+    $showParkingOnly = isset($_GET['show_parking']);
+
+
+    if ($ratingFilter) {
+        $hotels = array_filter($hotels, function ($hotel) use ($ratingFilter) {
+            return $hotel['vote'] >= $ratingFilter;
+        });
+    }
+
+    if ($showParkingOnly) {
+        $hotels = array_filter($hotels, function ($hotel) {
+            return $hotel['parking'] == true;
+        });
+    }
+
 ?>
+
+
+
 
 <!doctype html>
 <html lang="en">
     <head>
 
-        <title>PHP HOTEL</title>
+        <title>PHP HOTEL FILTER</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -79,31 +99,9 @@
 
     <body>
 
-        <main class="col-8 m-auto p-4">
+    <main class="col-8 m-auto p-4">
 
             <h1>Elenco Hotel</h1>
-
-            <form class="d-flex align-items-center col-6 mt-2 mb-2" action="filter.php" method="GET">
-              
-                <select class="form-select w-25 me-2" aria-label="Default select example " name="rating">
-                    <option selected>Voto</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="3">4</option>
-                    <option value="3">5</option>
-                </select>
-
-                <div class="form-check me-2  col-3">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="show_parking">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Parcheggio
-                    </label>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Filtra</button>
-
-            </form>
 
             <table class="table">
                 <tr>
