@@ -41,24 +41,27 @@
     ];
 
     // Filtra gli hotel in base alle selezioni del form
-    //$showParkingOnly = isset($_GET['show_parking']);
-    $showParkingOnly = isset($_GET['show_parking']) && $_GET['show_parking'] === 'on';
+    $showParkingOnly = isset($_GET['show_parking']);
+    //$showParkingOnly = isset($_GET['show_parking']) && $_GET['show_parking'] === 'on';
     $ratingFilter = $_GET['rating'] ?? null;
 
-    if ($ratingFilter) {
+
+
+    if ($showParkingOnly) {
         $filteredHotels = [];
         foreach ($hotels as $hotel) {
-            if ($hotel['vote'] >= $ratingFilter) {
+            if ($hotel['parking']) {
                 $filteredHotels[] = $hotel;
             }
         }
         $hotels = $filteredHotels;
     }
 
-    if ($showParkingOnly) {
+
+    if ($ratingFilter) {
         $filteredHotels = [];
         foreach ($hotels as $hotel) {
-            if ($hotel['parking']) {
+            if ($hotel['vote'] >= $ratingFilter) {
                 $filteredHotels[] = $hotel;
             }
         }
