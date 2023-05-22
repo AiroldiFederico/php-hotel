@@ -86,7 +86,7 @@
             <form class="d-flex align-items-center col-6 mt-2 mb-2" action="filter.php" method="GET">
               
                 <select class="form-select w-25 me-2" aria-label="Default select example " name="rating">
-                    <option selected>Voto</option>
+                    <option selected value="">Rating</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

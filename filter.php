@@ -1,5 +1,6 @@
 <?php
 
+
     $hotels = [
 
         [
@@ -44,7 +45,6 @@
     $showParkingOnly = isset($_GET['show_parking']);
     //$showParkingOnly = isset($_GET['show_parking']) && $_GET['show_parking'] === 'on';
     $ratingFilter = $_GET['rating'] ?? null;
-
 
 
     if ($showParkingOnly) {
