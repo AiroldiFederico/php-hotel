@@ -41,21 +41,43 @@
     ];
 
     // Filtra gli hotel in base alle selezioni del form
+    //$showParkingOnly = isset($_GET['show_parking']);
+    $showParkingOnly = isset($_GET['show_parking']) && $_GET['show_parking'] === 'on';
     $ratingFilter = $_GET['rating'] ?? null;
-    $showParkingOnly = isset($_GET['show_parking']);
-
 
     if ($ratingFilter) {
-        $hotels = array_filter($hotels, function ($hotel) use ($ratingFilter) {
-            return $hotel['vote'] >= $ratingFilter;
-        });
+        $filteredHotels = [];
+        foreach ($hotels as $hotel) {
+            if ($hotel['vote'] >= $ratingFilter) {
+                $filteredHotels[] = $hotel;
+            }
+        }
+        $hotels = $filteredHotels;
     }
 
     if ($showParkingOnly) {
-        $hotels = array_filter($hotels, function ($hotel) {
-            return $hotel['parking'] == true;
-        });
+        $filteredHotels = [];
+        foreach ($hotels as $hotel) {
+            if ($hotel['parking']) {
+                $filteredHotels[] = $hotel;
+            }
+        }
+        $hotels = $filteredHotels;
     }
+
+
+    // risoluzione con funzioni
+    // if ($ratingFilter) {
+    //     $hotels = array_filter($hotels, function ($hotel) use ($ratingFilter) {
+    //         return $hotel['vote'] >= $ratingFilter;
+    //     });
+    // }
+
+    // if ($showParkingOnly) {
+    //     $hotels = array_filter($hotels, function ($hotel) {
+    //         return $hotel['parking'] == true;
+    //     });
+    // }
 
 ?>
 
